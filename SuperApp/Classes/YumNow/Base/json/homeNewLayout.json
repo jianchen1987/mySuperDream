@@ -1,0 +1,40 @@
+[
+    {
+        "identity": "WMTopShortcutOptions",
+        "sort": 0
+    },
+    {
+        "identity": "WMFoucsAdvertise",
+        "sort": 1
+    },
+    {
+        "identity": "WMKingKong",
+        "sort": 2
+    },
+    {
+        "identity": "WMCarouselAdvertise",
+        "sort": 3
+    },
+    {
+        "identity": "WMEatOnTime",
+        "sort": 4
+    },
+    {
+        "identity": "WMNearStoreAdvertise",
+        "sort": 5
+    },
+    {
+        "identity": "WMMerchantTheme",
+        "sort": 6
+    },
+    {
+        "identity": "WMStoreTheme",
+        "sort": 7
+    },
+    {
+        "identity": "WMProductTheme",
+        "sort": 8
+    },
+
+
+]

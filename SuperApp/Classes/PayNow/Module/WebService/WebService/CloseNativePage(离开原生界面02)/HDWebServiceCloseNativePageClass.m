@@ -1,0 +1,24 @@
+//
+//  HDWebServiceCloseNativePageClass.m
+//  ViPayMerchant
+//
+//  Created by 谢 on 2018/8/7.
+//  Copyright © 2018年 混沌网络科技. All rights reserved.
+//
+
+#import "HDWebServiceCloseNativePageClass.h"
+
+@implementation HDWebServiceCloseNativePageClass
+
+- (NSString *)getWebFeatureClassStringByTypeCode:(NSInteger)type {
+    switch (type) {
+        case HDWebFeatureCloseNativePage:
+            return @"HDWebFeatureCloseNativePage";
+        case HDWebFeatureBackToHomeAndRoute:
+            return @"HDWebFeatureBackToHomeAndRoute";
+        default:
+            return @"";
+    }
+}
+
+@end

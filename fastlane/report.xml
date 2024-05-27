@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: Verifying fastlane version" time="0.000255">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: xcode_select" time="0.000131">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: default_platform" time="8.6e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: cocoapods" time="6.424799">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: Switch to ios pgy lane" time="0.000167">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: get_version_number" time="0.647948">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: get_build_number" time="1.075263">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="7: gym" time="206.334932">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="8: pgyer" time="30.046259">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="9: notification" time="0.295851">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

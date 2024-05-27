@@ -1,0 +1,242 @@
+fastlane_version "2.28.3"
+xcode_select "/Applications/Xcode.app"
+
+default_platform :ios
+
+scheme_name = "SuperApp"
+workspace = 'SuperApp.xcworkspace'
+team_id = '97K7QMAVS4'
+username = 'wangwj@kh-super.com'
+app_identifier = 'com.kh-super.ios.superapp'
+
+root_dir = ""
+provisioning_profile = ""
+codesigning_identity = ""
+export_method = ""
+description = ""
+configuration_mode = ""
+
+platform :ios do
+    before_all do
+      cocoapods
+    end
+
+    desc "截图"
+    lane :snap do
+      snapshot(
+        scheme: scheme_name
+      )
+      frameit(white: true, path: 'fastlane/screenshots')
+    end
+
+  	lane :test do
+    end
+
+    desc "打包 development 包"
+    lane :develop do |options|
+      root_dir = "development"
+      export_method = "development"
+      configuration_mode = "Debug"
+      provisioning_profile = "SuperAppDevProfile"
+      codesigning_identity = "Apple Development: JIAN CHEN (JXSHH3M6Y2)"
+      description = "development包"
+      package()
+    end
+    
+    desc "打包+上传到蒲公英平台 development 包"
+    lane :upload_to_pgy do |options|
+      root_dir = "development"
+      export_method = "development"
+      configuration_mode = "Debug"
+      provisioning_profile = "SuperAppDevProfile"
+      codesigning_identity = "Apple Development: JIAN CHEN (JXSHH3M6Y2)"
+      description = "development包"
+      pgy()
+    end
+
+    desc "jenkins 打包 development 包"
+    lane :jenkinsDev do |options|
+      root_dir = "jenkins"
+      export_method = "development"
+      configuration_mode = "Debug"
+      provisioning_profile = "SuperAppDevProfile"
+      codesigning_identity = "Apple Development: JIAN CHEN (JXSHH3M6Y2)"
+      description = "development包"
+      package()
+  	end
+
+    desc "打包ad-hoc包"
+    lane :ad_hoc do |options|
+      root_dir = "ad-hoc"
+      export_method = "ad-hoc"
+      configuration_mode = "Release"
+      provisioning_profile = "SuperAppAdhocProfile"
+      codesigning_identity = "Apple Distribution: U-LIFE KH SUPER APP CO., LTD. (97K7QMAVS4)"
+      description = "ad-hoc包"
+      package()
+  	end
+
+    desc "打包正式包"
+    lane :release do |options|
+      root_dir = "app-store"
+      export_method = "app-store"
+      configuration_mode = "Release"
+      provisioning_profile = "SuperAppDisProfile"
+      codesigning_identity = "Apple Distribution: U-LIFE KH SUPER APP CO., LTD. (97K7QMAVS4)"
+      description = "AppStore 生产包"
+      # 获取是否自增 build 参数
+      if options[:ibn]
+        # 正式版build版本号自增
+        increment_build_number()
+      end
+      package()
+    end
+
+    desc "打包函数"
+    lane :package do |options|
+
+      # 设置参数
+      version_number = get_version_number()
+      build_number = get_build_number()
+
+      if root_dir.eql?("jenkins")
+        output_directory = File.expand_path("..", Dir.pwd) + File::Separator + "build/#{root_dir}"
+        output_name = "SuperApp.ipa"
+      else
+        output_directory = File.expand_path("..", Dir.pwd) + File::Separator + "build/#{root_dir}/" + Time.now.strftime('%Y-%m-%d')
+        output_name = "#{scheme_name}_#{version_number}.#{build_number}_#{export_method}_#{Time.now.strftime('%Y-%m-%d %H%M')}.ipa"
+      end
+
+      build_path = output_directory + File::Separator
+
+      xcodebuild_xcargs = {
+        :BUNDLE_IDENTIFIER => app_identifier,
+        :PROVISIONING_PROFILE_SPECIFIER => provisioning_profile,
+        :DEVELOPMENT_TEAM => team_id
+      }
+
+      gym(
+        silent: true,
+        clean: true,
+        build_path: build_path,
+        buildlog_path: "fastlane/fastlane_log",
+        workspace: workspace,
+        scheme: scheme_name,
+        xcargs: xcodebuild_xcargs,
+        configuration: configuration_mode,
+        output_directory: output_directory,
+        output_name: output_name,
+        codesigning_identity: codesigning_identity,
+        export_method: export_method,
+        export_xcargs: "-allowProvisioningUpdates",
+        export_options: {
+          provisioningProfiles: {
+            app_identifier => provisioning_profile,
+          },
+          'signingCertificate': codesigning_identity,
+          'stripSwiftSymbols': true,
+          'compileBitcode': false,
+          'method': export_method,
+          'signingStyle': 'manual',
+          'teamID': team_id,
+          'thinning': '<none>'
+        })
+        # 打包完成通知
+        notification(
+          'title': '打包完成',
+          'message': "Fastlane #{description}打包完成"
+        )
+    end
+    
+    desc "打包到蒲公英函数"
+    lane :pgy do |options|
+
+      # 设置参数
+      version_number = get_version_number()
+      build_number = get_build_number()
+
+      if root_dir.eql?("jenkins")
+        output_directory = File.expand_path("..", Dir.pwd) + File::Separator + "build/#{root_dir}"
+        output_name = "SuperApp.ipa"
+      else
+        output_directory = File.expand_path("..", Dir.pwd) + File::Separator + "build/#{root_dir}/" + Time.now.strftime('%Y-%m-%d')
+        output_name = "#{scheme_name}_#{version_number}.#{build_number}_#{export_method}_#{Time.now.strftime('%Y-%m-%d %H%M')}.ipa"
+      end
+
+      build_path = output_directory + File::Separator
+
+      xcodebuild_xcargs = {
+        :BUNDLE_IDENTIFIER => app_identifier,
+        :PROVISIONING_PROFILE_SPECIFIER => provisioning_profile,
+        :DEVELOPMENT_TEAM => team_id
+      }
+
+      gym(
+        silent: true,
+        clean: true,
+        build_path: build_path,
+        buildlog_path: "fastlane/fastlane_log",
+        workspace: workspace,
+        scheme: scheme_name,
+        xcargs: xcodebuild_xcargs,
+        configuration: configuration_mode,
+        output_directory: output_directory,
+        output_name: output_name,
+        codesigning_identity: codesigning_identity,
+        export_method: export_method,
+        export_xcargs: "-allowProvisioningUpdates",
+        export_options: {
+          provisioningProfiles: {
+            app_identifier => provisioning_profile,
+          },
+          'signingCertificate': codesigning_identity,
+          'stripSwiftSymbols': true,
+          'compileBitcode': false,
+          'method': export_method,
+          'signingStyle': 'manual',
+          'teamID': team_id,
+          'thinning': '<none>'
+        })
+        
+      pgyer(api_key: "e91a1fbf0790a931b94287c14182b6a9")
+        
+        # 打包完成通知
+      notification(
+        'title': '用户端上传完成',
+        'message': "蒲公英 #{description}上传完成"
+      )
+   
+    end
+
+    desc "上传testflight"
+    lane :tf do |options|
+      pilot(
+        ipa: options[:ipa],
+        app_identifier: "com.kh-super.ios.superapp",
+        username: username,
+        changelog: "SuperApp testing",
+        beta_app_review_info: {
+          demo_account_name: "+85588158158",
+          demo_account_password: "999999",
+          notes: "SuperApp testing"
+        }
+      )
+  	end
+
+    lane :all do |options|
+      develop()
+      jenkinsDev()
+      ad_hoc()
+      release()
+    end
+
+    after_all do |lane|
+  	end
+
+  	error do |lane, exception|
+      notification(
+          'title': '打包失败',
+          'message': "打包出错，请查看日志"
+        )
+  	end
+end

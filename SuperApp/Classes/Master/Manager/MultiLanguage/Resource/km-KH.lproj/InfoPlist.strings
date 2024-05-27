@@ -1,0 +1,9 @@
+CFBundleDisplayName               = "WOWNOW";
+NSCameraUsageDescription          = "WOWNOW ត្រូវការប្រើកាមេរ៉ារបស់អ្នកដើម្បីស្កេនQRកូដ និងថតរូប។";
+NSPhotoLibraryAddUsageDescription = "WOWNOW ត្រូវការប្រើអាល់ប៊ុមរបស់អ្នកដើម្បីរក្សាទុករូបថត។";
+NSPhotoLibraryUsageDescription    = "WOWNOW ត្រូវការចូលទៅកាន់រូបថតរបស់អ្នកដើម្បីពិនិត្យរកQRកូដ។";
+NSContactsUsageDescription        = "WOWNOW ត្រូវការចូលទៅកាន់លេខទំនាក់ទំនងរបស់អ្នកដើម្បីជួយអ្នកទាញយកលេខទូរស័ព្ទកាន់តែលឿន។";
+NSLocationWhenInUseUsageDescription = "WOWNOW ត្រូវការប្រើប្រាស់ទីតាំងរបស់អ្នកដើម្បីស្វែងរកហាងដែលនៅជិតអ្នក។";
+NSLocationAlwaysAndWhenInUseUsageDescription = "WOWNOW ត្រូវការប្រើប្រាស់ទីតាំងរបស់អ្នកដើម្បីស្វែងរកហាងដែលនៅជិតអ្នក។";
+NSMicrophoneUsageDescription = "WOWNOW ត្រូវការប្រើមីក្រូហ្វូនរបស់អ្នក ដើម្បីឱ្យអ្នកអាចទំនាក់ទំនងជាមួយអ្នកជិះបានទាន់ពេល។";
+UILaunchStoryboardName = "SALaunchScreen_KM";

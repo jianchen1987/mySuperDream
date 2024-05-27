@@ -1,0 +1,9 @@
+CFBundleDisplayName               = "WOWNOW";
+NSCameraUsageDescription          = "WOWNOW needs to use your Camera to scan QR code and take photos.";
+NSPhotoLibraryAddUsageDescription = "WOWNOW needs to use your album to store photos.";
+NSPhotoLibraryUsageDescription    = "WOWNOW needs to access your Photos to detect QR code. ";
+NSContactsUsageDescription        = "WOWNOW needs to access your Contacts to assist you in getting phone number more quickly. ";
+NSLocationWhenInUseUsageDescription = "WOWNOW needs to use your location to discover your nearby stores";
+NSLocationAlwaysAndWhenInUseUsageDescription = "WOWNOW needs to use your location to discover your nearby stores";
+NSMicrophoneUsageDescription = "WOWNOW needs to use your microphone so that you can communicate with the rider in a timely manner.";
+UILaunchStoryboardName = "SALaunchScreen";

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>aps-environment</key>
+	<string>development</string>
+	<key>com.apple.developer.applesignin</key>
+	<array>
+		<string>Default</string>
+	</array>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:h5-sit.lifekh.com</string>
+		<string>applinks:h5-uat.lifekh.com</string>
+		<string>applinks:h5.lifekh.com</string>
+		<string>applinks:tinhnow.com</string>
+		<string>applinks:m-uat.ozos.xyz</string>
+		<string>applinks:m-sit.ozos.xyz</string>
+		<string>applinks:m.ozos.xyz</string>
+	</array>
+</dict>
+</plist>

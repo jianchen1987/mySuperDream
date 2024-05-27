@@ -1,0 +1,6 @@
+framework module HuionePaySDK_iOS {
+  umbrella header "HuionePaySDK_iOS.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,68 @@
+//
+//  TNGoodReviewCell+Skeleton.m
+//  SuperApp
+//
+//  Created by 张杰 on 2021/3/26.
+//  Copyright © 2021 chaos network technology. All rights reserved.
+//
+
+#import "TNGoodReviewCell+Skeleton.h"
+
+
+@implementation TNGoodReviewCell (Skeleton)
+#pragma mark - HDSkeletonLayerLayoutProtocol
+- (NSArray<HDSkeletonLayer *> *)skeletonLayoutViews {
+    HDSkeletonLayer *circle = [[HDSkeletonLayer alloc] init];
+    const CGFloat iconW = 60;
+    circle.skeletonCornerRadius = 30;
+    [circle hd_makeFrameLayout:^(HDFrameLayoutMaker *_Nonnull make) {
+        make.width.hd_equalTo(iconW);
+        make.height.hd_equalTo(iconW);
+        make.top.hd_equalTo(15);
+        make.left.hd_equalTo(15);
+    }];
+
+    CGFloat margin = 10;
+    HDSkeletonLayer *r1 = [[HDSkeletonLayer alloc] init];
+    [r1 hd_makeFrameLayout:^(HDFrameLayoutMaker *_Nonnull make) {
+        make.width.hd_equalTo(150);
+        make.height.hd_equalTo(20);
+        make.left.hd_equalTo(circle.hd_right + margin);
+        make.top.hd_equalTo(circle.hd_top);
+    }];
+
+    HDSkeletonLayer *r2 = [[HDSkeletonLayer alloc] init];
+    [r2 hd_makeFrameLayout:^(HDFrameLayoutMaker *_Nonnull make) {
+        make.left.hd_equalTo(r1.hd_left);
+        make.right.hd_equalTo(self.hd_right - 15);
+        make.bottom.hd_equalTo(circle.hd_bottom - 5);
+        make.height.hd_equalTo(20);
+    }];
+
+    HDSkeletonLayer *r3 = [[HDSkeletonLayer alloc] init];
+    [r3 hd_makeFrameLayout:^(HDFrameLayoutMaker *_Nonnull make) {
+        make.left.hd_equalTo(r1.hd_left);
+        make.width.hd_equalTo(120);
+        make.top.hd_equalTo(r2.hd_bottom + 10);
+        make.height.hd_equalTo(20);
+    }];
+
+    HDSkeletonLayer *r4 = [[HDSkeletonLayer alloc] init];
+    [r4 hd_makeFrameLayout:^(HDFrameLayoutMaker *_Nonnull make) {
+        make.right.hd_equalTo(self.hd_right - 15);
+        make.width.hd_equalTo(60);
+        make.top.hd_equalTo(r3.hd_top);
+        make.height.hd_equalTo(r3.hd_height);
+    }];
+
+    return @[circle, r1, r2, r3, r4];
+}
+
+- (UIColor *)skeletonContainerViewBackgroundColor {
+    return UIColor.whiteColor;
+}
+
++ (CGFloat)skeletonViewHeight {
+    return 120;
+}
+@end
